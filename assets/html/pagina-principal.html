@@ -1,22 +1,106 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Página principal</title>
-    <link rel="stylesheet" href="../css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">    
+    <!-- <link rel = "stylesheet" href = "../css/usuario_logado.css"> -->
+    <style>
+        .container {
+            width: 100%;
+            height: 100px;
+            display: block;
+            position: absolute;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: royalblue;
+        }
+
+        .usuario {
+            display: flex;
+            align-items: center;
+            position: absolute;
+            top: 20px;
+            height: 20px;
+        }
+
+        .usuario img {
+            width: 100px;
+            height: 100px;
+            border-radius: 56%;
+            margin-right: 10px;
+        }
+
+        .usuario span {
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
 </head>
+
 <body>
     <div class="container">
         <div class="login-box">
             <h2>Olá! Você está logado.</h2>
-            <form id="login-form">                
-                <button type="submit">Sair</button>                                
-            </form>
+
+            <h1>Saldo em conta</h1>
+            <p>Saldo atual: <span id="saldo-atual" class="saldo"></span></p>
+            <button id="depositar">Depositar</button>
+            <button id="sacar">Sacar</button>
+            <input type="number" id="valor" placeholder="Valor">
+
+            <!-- <div class="container">
+                <span>Bem-vindo, <span id="nome-usuario"></span>!</span>
+                <div class="usuario">
+                    <span id="nome-usuario-direita"></span>
+                    <input type="file" id="foto-usuario" accept="image/*">
+                    <img id="foto-usuario-preview" src="../images/usuario.jpg" alt="Foto do usuário">
+                </div>
+            </div>
+
+            <form id="login-form">
+                <button type="submit">Sair</button>
+            </form> -->
         </div>
     </div>
 
-    <script src="../js/pagina-principal.js"></script>
+    <!-- <script src = "../js/pagina-principal.js"></script> -->
+    <script>
+        let saldo = 1000; //Saldo inicial
+
+        //Atualiza saldo na tela
+        document.getElementById("saldo-atual").innerText = `R$ ${saldo.toFixed(2)}`;
+
+        //Funcção para depositar
+        Document.getElementById("depositat").addEventListener("click", () => {
+            const valor = parseFloat(Document.getElementById("valor").value);
+            if (valor > 0) {
+                saldo += valor;
+                document.getElementById("saldo atual").innerText = `R$ ${saldo.toFixed(2)}`;
+                document.getElementById("valor").value = "";
+            } else {
+                alert("valor inválido!");
+            }
+        });
+
+        //Função para sacar
+        document.getElementById("sacar").addEventListener("click", () => {
+            const valor = parseFloat(document.getElementById("valor").value);
+
+            if (valor > 0 && valor <= saldo) {
+                saldo -= valor;
+                document.getElementById("saldo-atual").innerText = `R$ ${saldo.toFixed(2)}`;
+                document.getElementById("valor").value = "";
+            } else if (valor > saldo) {
+                alert("Saldo insuficiente!");
+            } else {
+                alert("Valor inválido!");
+            }
+        });
+    </script>
 </body>
+
 </html>
